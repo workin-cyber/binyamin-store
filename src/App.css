@@ -56,6 +56,12 @@
   width: 380px;;
 }
 
+.itemCart img{
+  border-radius: 20%;
+  height: 80px;
+  width: 80px;;
+}
+
 .cat img{
   height: 90px;
 }

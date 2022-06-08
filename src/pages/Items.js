@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import LinkItem from "../components/LinkItem";
+import CartContext from "../Context/CartContext";
 
-export default function Items(props) {
+export default function Items() {
+    const { cart, setCart } = useContext(CartContext);
 
     const { cat } = useParams() // let cat=  useParams.cat
 
@@ -18,13 +20,16 @@ export default function Items(props) {
 
     return <div className="catList">
         {items.length ? items.map(i => {
-            return <LinkItem key={'item' + i.id} where={'/item/' + i.id} item={i}>
-                <div className="cat img">
-                    <h4>{i.title}</h4>
-                    <img src={i.image} />
-                    <h5>{i.price}</h5>
-                </div>
-            </LinkItem>
+            return <>
+                <LinkItem key={'item' + i.id} where={'/item/' + i.id} item={i}>
+                    <div className="cat img">
+                        <h4>{i.title}</h4>
+                        <img src={i.image} />
+                        <h5>{i.price}</h5>
+                    </div>
+                </LinkItem>
+                <button onClick={() => { setCart([...cart, i]) }}>Add to cart</button>
+            </>
         })
 
             : <h4>not found</h4>}
