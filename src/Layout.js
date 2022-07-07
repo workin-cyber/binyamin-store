@@ -12,7 +12,7 @@ export default function Layout() {
 
         <CartContext.Provider value={{ cart, setCart }}>
             <Main />
-            <Cart />
+            {/* <Cart /> */}
         </CartContext.Provider>
     </div>;
 }
